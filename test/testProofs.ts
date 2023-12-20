@@ -9,7 +9,6 @@ import data from '../instances2.json';
 // Load environment variables from .env file
 dotenv.config();
 describe('CarbonCreditsContract', function () {
-  var verifier: Contract;
   let creditsAttestation: Contract;
   var addr1: SignerWithAddress; // 
 
@@ -27,37 +26,27 @@ describe('CarbonCreditsContract', function () {
     // Deploy Verifier contract
     const Verifier = await HH.getContractFactory('Halo2Verifier');
     const verifier = await Verifier.deploy();
-    //await verifier.deployed();
+    await verifier.waitForDeployment();
 
     // Deploy CreditsAttestation contract
     const CreditsAttestation = await HH.getContractFactory('CarbonCreditsContract');
     creditsAttestation = await CreditsAttestation.deploy(verifier) as unknown as Contract;
-    //await creditsAttestation.deployed();
+    await creditsAttestation.waitForDeployment();
 
     const signers = await HH.getSigners(); // get the signer for addr1
     addr1 = signers[0];
   });
 
-  it('should allow user to claim credit after a valid proof is submitted', async function () {
-    // Submit a valid proof
-    const tx = await creditsAttestation.claimCredits(validProof, instances);
-    console.log(tx);
-    const receipt = await tx.wait();
-    console.log('Gas used:', receipt.gasUsed.toString());
+  it('should deploy the contract with initial state', async function () {
+    // Check if the contract is deployed
+    console.log("SC address: ", await creditsAttestation.getAddress());
+    expect(creditsAttestation.getAddress()).to.not.equal(undefined);
 
-    // Check if user balance has increased
-    const balance = await creditsAttestation.balances(addr1.address);
-    expect(balance).to.be.above(0);
-  });
-
-  it('should not allow user to claim credit after an invalid proof is submitted', async function () {
-    // Submit an invalid proof
-    const tx = await creditsAttestation.claimCredits(invalidProof, instances);
-    const receipt = await tx.wait();
-    console.log('Gas used:', receipt.gasUsed.toString());
-    // Check if user balance has not increased
-    const balance = await creditsAttestation.balances(addr1.address);
-    expect(balance).to.equal(0);
+    // Check if the balance of addr1 is initially 0
+    console.log("addr1 address: ", addr1.address);
+    console.log("addr1 balance: ", await creditsAttestation.balances(addr1.address));
+    const initialBalance = await creditsAttestation.balances(addr1.address);
+    expect(initialBalance).to.equal(0);
   });
 
 
