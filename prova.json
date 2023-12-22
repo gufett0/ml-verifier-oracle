@@ -1,0 +1,29 @@
+[*] [0s, ezkl] - 
+ |  
+ |          ███████╗███████╗██╗  ██╗██╗
+ |          ██╔════╝╚══███╔╝██║ ██╔╝██║
+ |          █████╗    ███╔╝ █████╔╝ ██║
+ |          ██╔══╝   ███╔╝  ██╔═██╗ ██║
+ |          ███████╗███████╗██║  ██╗███████╗
+ |          ╚══════╝╚══════╝╚═╝  ╚═╝╚══════╝
+ |  
+ |          -----------------------------------------------------------
+ |          Easy Zero Knowledge for Liberty.
+ |          -----------------------------------------------------------
+ |  
+ |          
+[*] [0s, ezkl] - command: 
+ |   {
+ |    "command": {
+ |      "Prove": {
+ |        "check_mode": "SAFE",
+ |        "compiled_circuit": "ezkl-outputs/snn.ezkl",
+ |        "pk_path": "ezkl-outputs/pk.key",
+ |        "proof_path": "ezkl-outputs/proof.json",
+ |        "proof_type": "Single",
+ |        "srs_path": "ezkl-outputs/kzg.srs",
+ |        "witness": "ezkl-outputs/witness.json"
+ |      }
+ |    }
+ |  }
+[E] [0s, ezkl] - failed: failed to load model at ezkl-outputs/witness.json
