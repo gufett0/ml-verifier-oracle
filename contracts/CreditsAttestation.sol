@@ -11,7 +11,7 @@ contract CarbonCreditsContract {
     //mapping(address => bool) public proofStatus;
     mapping(address => uint256) public balances;
 
-    event ProofSubmitted(address indexed submitter, bytes proof);
+    event ProofSubmitted(address indexed submitter, uint256[] instances, bytes proof);
 
     constructor(address _halo2Verifier) {
         halo2Verifier = Halo2Verifier(_halo2Verifier);
@@ -24,7 +24,6 @@ contract CarbonCreditsContract {
         // Logic to mint carbon credits for the sender based on the provided image hash
         uint256 amount = 100;
         balances[msg.sender] += amount;
-        emit ProofSubmitted(msg.sender, proof);
+        emit ProofSubmitted(msg.sender, instances, proof);
     }
-
 }

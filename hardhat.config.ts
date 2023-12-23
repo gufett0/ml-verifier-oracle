@@ -3,6 +3,8 @@ import "@nomicfoundation/hardhat-toolbox"
 import "hardhat-gas-reporter"
 import "@nomicfoundation/hardhat-chai-matchers"
 import "@nomicfoundation/hardhat-ethers";
+import dotenv from 'dotenv';
+dotenv.config();
 
 const config: HardhatUserConfig = {
   solidity: {

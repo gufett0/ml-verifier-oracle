@@ -1,25 +1,23 @@
 import { ethers as HH } from 'hardhat';
-import { expect } from 'chai';
 import { Contract } from 'ethers';
-import * as dotenv from 'dotenv';
 import { SignerWithAddress } from "@nomicfoundation/hardhat-ethers/signers";
-import data from '../instances2.json';
-
+import data from '../prover/evmInputs.json';
+import chai from 'chai';
+import chaiAsPromised from 'chai-as-promised';
+chai.use(chaiAsPromised);
+const { expect } = chai;
 
 // Load environment variables from .env file
-dotenv.config();
 describe('CarbonCreditsContract', function () {
   let creditsAttestation: Contract;
   var addr1: SignerWithAddress; // 
 
-  var validProof = process.env.PROOF1;
-  console.log(validProof);
-  var invalidProof = process.env.PROOF2;
-  console.log(invalidProof);
-  var instances = data;
-  console.log(instances);
-
-  //var validProof = HH.utils.arrayify(validProof);
+  var proof = data.proof;
+  var proof2 = proof.substring(0, 2) + 'B' + proof.substring(3);
+  var instances = data.instances;
+  //console.log("This is the vaid proof: ", proof);
+  //console.log("This is the invalid proof: ", proof2);
+  //console.log("These are the instances: ", instances);
 
 
   beforeEach(async function () {
@@ -37,16 +35,50 @@ describe('CarbonCreditsContract', function () {
     addr1 = signers[0];
   });
 
-  it('should deploy the contract with initial state', async function () {
-    // Check if the contract is deployed
-    console.log("SC address: ", await creditsAttestation.getAddress());
-    expect(creditsAttestation.getAddress()).to.not.equal(undefined);
+  it('should allow user to claim credit after a valid proof is submitted', async function () {
+    // Submit a valid proof
+    const tx = await creditsAttestation.claimCredits(proof, instances);
+    //console.log(tx);
+    await expect(tx.wait()).to.not.be.reverted;
+    //const receipt = await tx.wait();
 
-    // Check if the balance of addr1 is initially 0
-    console.log("addr1 address: ", addr1.address);
-    console.log("addr1 balance: ", await creditsAttestation.balances(addr1.address));
-    const initialBalance = await creditsAttestation.balances(addr1.address);
-    expect(initialBalance).to.equal(0);
+    const receipt = await HH.provider.getTransactionReceipt(tx.hash);
+    let totalGasUsed: BigInt = BigInt(0);
+    if (receipt !== null) {
+        totalGasUsed = receipt.gasUsed;
+    }
+
+    console.log('Gas used:', totalGasUsed.toString());
+    var events = await creditsAttestation.queryFilter("ProofSubmitted");
+    expect(events.length).to.equal(1);
+    expect(events.length).to.equal(1);
+    events.forEach(event => {
+      if ('args' in event) {
+        const proof = event.args.proof;
+        const maxCharactersToShow = 100;
+        const portionToLog = proof.length > maxCharactersToShow
+          ? proof.substring(0, maxCharactersToShow) + '...'
+          : proof;
+        console.log(`\n Verification Event: 
+          User: ${event.args.submitter}
+          Instances (decimal): ${event.args.instances}
+          Proof (Partial): ${portionToLog}`);
+      }
+    });
+
+    // Check if user balance has increased
+    const balance = await creditsAttestation.balances(addr1.address);
+    expect(balance).to.be.above(0);
+  });
+
+  it('should NOT allow user to claim credit after an invalid proof is submitted', async function () {
+    // Submit an invalid proof
+    const tx = await creditsAttestation.claimCredits(proof2, instances);
+    await expect(tx.wait()).to.eventually.be.rejected;
+    //await expect(tx.wait()).to.be.reverted;
+    // Check if user balance has not increased
+    const balance = await creditsAttestation.balances(addr1.address);
+    expect(balance).to.equal(0);
   });
 
 
