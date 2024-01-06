@@ -24,12 +24,12 @@ describe('CarbonCreditsContract', function () {
     // Deploy Verifier contract
     const Verifier = await HH.getContractFactory('Halo2Verifier');
     const verifier = await Verifier.deploy();
-    //await verifier.deployed();
+    await verifier.waitForDeployment();
 
     // Deploy CreditsAttestation contract
     const CreditsAttestation = await HH.getContractFactory('CarbonCreditsContract');
     creditsAttestation = await CreditsAttestation.deploy(verifier) as unknown as Contract;
-    //await creditsAttestation.deployed();
+    await creditsAttestation.waitForDeployment();
 
     const signers = await HH.getSigners(); // get the signer for addr1
     addr1 = signers[0];

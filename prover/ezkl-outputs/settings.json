@@ -1,1 +1,64 @@
-{"run_args":{"tolerance":{"val":0.0,"scale":1.0},"input_scale":1,"param_scale":1,"scale_rebase_multiplier":10,"lookup_range":[-174,176],"logrows":16,"num_inner_cols":1,"variables":[["batch_size",1]],"input_visibility":"Private","output_visibility":"Public","param_visibility":"Fixed"},"num_rows":45800,"total_assignments":45800,"total_const_size":32453,"model_instance_shapes":[[1,1]],"model_output_scales":[7],"model_input_scales":[1,1],"module_sizes":{"kzg":[],"poseidon":[0,[0]],"elgamal":[0,[0]]},"required_lookups":["Abs","ReLU"],"check_mode":"UNSAFE","version":"5.0.3","num_blinding_factors":null}
+{
+    "run_args": {
+        "tolerance": {
+            "val": 0.0,
+            "scale": 1.0
+        },
+        "input_scale": 1,
+        "param_scale": 1,
+        "scale_rebase_multiplier": 10,
+        "lookup_range": [
+            -174,
+            176
+        ],
+        "logrows": 16,
+        "num_inner_cols": 2,
+        "variables": [
+            [
+                "batch_size",
+                1
+            ]
+        ],
+        "input_visibility": "Private",
+        "output_visibility": "Public",
+        "param_visibility": "Fixed"
+    },
+    "num_rows": 24636,
+    "total_assignments": 49272,
+    "total_const_size": 34949,
+    "model_instance_shapes": [
+        [
+            1,
+            1
+        ]
+    ],
+    "model_output_scales": [
+        7
+    ],
+    "model_input_scales": [
+        1,
+        1
+    ],
+    "module_sizes": {
+        "kzg": [],
+        "poseidon": [
+            0,
+            [
+                0
+            ]
+        ],
+        "elgamal": [
+            0,
+            [
+                0
+            ]
+        ]
+    },
+    "required_lookups": [
+        "Abs",
+        "ReLU"
+    ],
+    "check_mode": "UNSAFE",
+    "version": "7.0.0",
+    "num_blinding_factors": null
+}
