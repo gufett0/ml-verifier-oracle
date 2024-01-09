@@ -1,0 +1,7 @@
+Verification key size: 198088 bytes
+Proving key size: 314771200 bytes
+Setup time: 35.9617133140564
+Proving time: 74.99846529960632
+Verification (locally) time: 0.189286470413208
+
+Description: first test with calibration focused on "resources" and scale value [1, 7]

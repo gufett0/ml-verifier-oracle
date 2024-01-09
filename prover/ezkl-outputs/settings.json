@@ -4,14 +4,14 @@
             "val": 0.0,
             "scale": 1.0
         },
-        "input_scale": 1,
-        "param_scale": 1,
-        "scale_rebase_multiplier": 10,
+        "input_scale": 10,
+        "param_scale": 10,
+        "scale_rebase_multiplier": 1,
         "lookup_range": [
-            -174,
-            176
+            -7228578,
+            7814386
         ],
-        "logrows": 16,
+        "logrows": 24,
         "num_inner_cols": 2,
         "variables": [
             [
@@ -23,9 +23,9 @@
         "output_visibility": "Public",
         "param_visibility": "Fixed"
     },
-    "num_rows": 24636,
-    "total_assignments": 49272,
-    "total_const_size": 34949,
+    "num_rows": 57747,
+    "total_assignments": 115495,
+    "total_const_size": 98875,
     "model_instance_shapes": [
         [
             1,
@@ -33,11 +33,11 @@
         ]
     ],
     "model_output_scales": [
-        7
+        10
     ],
     "model_input_scales": [
-        1,
-        1
+        10,
+        10
     ],
     "module_sizes": {
         "kzg": [],
@@ -56,6 +56,11 @@
     },
     "required_lookups": [
         "Abs",
+        {
+            "Div": {
+                "denom": 1024.0
+            }
+        },
         "ReLU"
     ],
     "check_mode": "UNSAFE",

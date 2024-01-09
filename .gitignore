@@ -16,4 +16,4 @@ myenv
 /coverage.json
 
 # public key
-prover/ezkl-outputs/pk.key
+/prover/ezkl-outputs/pk.key
