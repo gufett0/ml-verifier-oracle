@@ -1,0 +1,9 @@
+Verification key size: 3409544 bytes
+Proving key size: 5640554468 bytes
+Setup time: 473.70667839050293
+Proving time: 542.509895324707
+Verification (locally) time: 1.1563193798065186
+Verification (locally) time: 1.1563193798065186
+
+Description: calibration made with only 'resources', no scales, no logrows
+Description: calibration made with only 'resources', no scales, no logrows

@@ -1,0 +1,7 @@
+Verification key size: 3409544 bytes
+Proving key size: 5640554468 bytes
+Setup time: 544.4655497074127
+Proving time: 508.7705385684967
+Verification (locally) time: 1.1039683818817139
+
+Test with second SNN with total number of parameters: 69921
