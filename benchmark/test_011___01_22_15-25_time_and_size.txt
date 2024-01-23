@@ -1,0 +1,59 @@
+Test on Colab
+
+<------------- Numerical Fidelity Report (input_scale: 1, param_scale: 1, scale_input_multiplier: 10) ------------->
+
++------------+--------------+------------+------------+----------------+------------------+---------------+---------------+--------------------+--------------------+------------------------+
+| mean_error | median_error | max_error  | min_error  | mean_abs_error | median_abs_error | max_abs_error | min_abs_error | mean_squared_error | mean_percent_error | mean_abs_percent_error |
++------------+--------------+------------+------------+----------------+------------------+---------------+---------------+--------------------+--------------------+------------------------+
+| -14.939764 | -1.0296075   | -1.0296075 | -31.249203 | 14.939764      | 1.0296075        | 31.249203     | 1.0296075     | 287.24518          | 1.4481556          | 1.4821036              |
++------------+--------------+------------+------------+----------------+------------------+---------------+---------------+--------------------+--------------------+------------------------+
+
+
+model ML raw output: 7.8228
+model ML final output: 0.9996
+model circuit output: 0x82 = 130
+model_output_scales = 5
+--> 130/2^5 = 4.0625
+
+
+Verification key size: 50632 bytes
+Proving key size: 78694144 bytes
+Setup time, INFO:ezkl.pfsys:VK took 6.208;
+INFO:ezkl.pfsys:PK took 1.933;
+function call took 15.315864086151123
+Proving time, INFO:ezkl.pfsys:proof took 16.400;
+function call took 16.898720026016235
+Verification (locally) time, INFO:ezkl.execute:verify took 0.20;
+function call took 0.2289284610748291
+
+Test SNN with total number of parameters: 69921
+Number of samples in dataset: 10000
+Learning Rate: 0.01, Avg loss: 0.005959028962328112
+Learning Rate: 0.01, Test Accuracy: 96.90%
+Calibration made with "resources" and scales=[1, 8]
+
+
+  CarbonCreditsContract
+Gas used: 597399
+
+ Verification Event: 
+          User: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
+          Instances (decimal): 130
+          Proof (Partial): 0x09b8ba2fcb283551c49f1cb7545e237cc62de70b5fdf5e9d2e236f80d9fd0e490c7f87c2508706a3ce91d6a9227126b0f6...
+    ✔ should allow user to claim credit after a valid proof is submitted
+
+·------------------------------------------|---------------------------|-------------|-----------------------------·
+|           Solc version: 0.8.20           ·  Optimizer enabled: true  ·  Runs: 200  ·  Block limit: 30000000 gas  │
+···········································|···························|·············|······························      
+|  Methods                                                                                                         │      
+··························|················|·············|·············|·············|···············|··············      
+|  Contract               ·  Method        ·  Min        ·  Max        ·  Avg        ·  # calls      ·  usd (avg)  │      
+··························|················|·············|·············|·············|···············|··············      
+|  CarbonCreditsContract  ·  claimCredits  ·          -  ·          -  ·     597399  ·            4  ·          -  │      
+··························|················|·············|·············|·············|···············|··············      
+|  Deployments                             ·                                         ·  % of limit   ·             │      
+···········································|·············|·············|·············|···············|··············      
+|  CarbonCreditsContract                   ·          -  ·          -  ·     303902  ·          1 %  ·          -  │      
+···········································|·············|·············|·············|···············|··············      
+|  Halo2Verifier                           ·          -  ·          -  ·    2174457  ·        7.2 %  ·          -  │      
+·------------------------------------------|-------------|-------------|-------------|---------------|-------------·

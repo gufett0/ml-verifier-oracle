@@ -1,0 +1,58 @@
+Test on local linux VM
+
+ <------------- Numerical Fidelity Report (input_scale: 1, param_scale: 1, scale_input_multiplier: 10) ------------->
+
++------------+--------------+------------+-----------+----------------+------------------+---------------+---------------+--------------------+--------------------+------------------------+
+| mean_error | median_error | max_error  | min_error | mean_abs_error | median_abs_error | max_abs_error | min_abs_error | mean_squared_error | mean_percent_error | mean_abs_percent_error |
++------------+--------------+------------+-----------+----------------+------------------+---------------+---------------+--------------------+--------------------+------------------------+
+| -14.939763 | -1.0296056   | -1.0296056 | -31.24921 | 14.939763      | 1.0296056        | 31.24921      | 1.0296056     | 287.24518          | 1.4481556          | 1.4821036              |
++------------+--------------+------------+-----------+----------------+------------------+---------------+---------------+--------------------+--------------------+------------------------+
+
+
+model ML raw output: 7.8228
+model ML final output: 0.9996
+model circuit output: 0x82 = 130
+model_output_scales = 5
+--> 130/2^5 = 4.0625
+
+
+Verification key size: 50632 bytes
+Proving key size: 78694144 bytes
+Setup time, INFO ezkl.pfsys 2024-01-23 14:40:09,625 mod.rs:443 VK took 2.667;
+INFO ezkl.pfsys 2024-01-23 14:40:11,112 mod.rs:449 PK took 1.483;
+function call took 4.711378812789917
+Proving time, INFO ezkl.pfsys 2024-01-23 14:40:46,652 mod.rs:554 proof took 4.716;
+function call took 5.026534795761108
+Verification (locally) time, INFO ezkl.execute 2024-01-23 14:40:49,966 execute.rs:1917 verify took 0.28;
+function call took 0.28401347160339355
+
+Test SNN with total number of parameters: 69921
+Number of samples in dataset: 10000
+Learning Rate: 0.01, Avg loss: 0.005959028962328112
+Learning Rate: 0.01, Test Accuracy: 96.90%
+Calibration made with "resources" and scales=[1, 8]
+
+  CarbonCreditsContract
+Gas used: 597423
+
+ Verification Event: 
+          User: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
+          Instances (decimal): 130
+          Proof (Partial): 0x0dd15411ef4515a59dd593da0709da359646b336eca533a0a6a48942149a742d3043b68056e8ac1bd3271f208eac3058f5...
+    ✔ should allow user to claim credit after a valid proof is submitted
+
+·------------------------------------------|---------------------------|-------------|-----------------------------·
+|           Solc version: 0.8.20           ·  Optimizer enabled: true  ·  Runs: 200  ·  Block limit: 30000000 gas  │
+···········································|···························|·············|······························
+|  Methods                                                                                                         │
+··························|················|·············|·············|·············|···············|··············
+|  Contract               ·  Method        ·  Min        ·  Max        ·  Avg        ·  # calls      ·  usd (avg)  │
+··························|················|·············|·············|·············|···············|··············
+|  CarbonCreditsContract  ·  claimCredits  ·          -  ·          -  ·     597423  ·            4  ·          -  │
+··························|················|·············|·············|·············|···············|··············
+|  Deployments                             ·                                         ·  % of limit   ·             │
+···········································|·············|·············|·············|···············|··············
+|  CarbonCreditsContract                   ·          -  ·          -  ·     303902  ·          1 %  ·          -  │
+···········································|·············|·············|·············|···············|··············
+|  Halo2Verifier                           ·          -  ·          -  ·    2174457  ·        7.2 %  ·          -  │
+·------------------------------------------|-------------|-------------|-------------|---------------|-------------·

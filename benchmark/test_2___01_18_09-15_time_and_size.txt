@@ -1,0 +1,5 @@
+Verification key size: 198088 bytes
+Proving key size: 314771200 bytes
+Setup time: 22.709615468978882
+Proving time: 32.86826467514038
+Verification (locally) time: 0.06705999374389648

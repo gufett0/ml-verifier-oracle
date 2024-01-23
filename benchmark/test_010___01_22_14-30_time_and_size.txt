@@ -1,0 +1,59 @@
+Test on Colab
+
+<------------- Numerical Fidelity Report (input_scale: 1, param_scale: 1, scale_input_multiplier: 10) ------------->
+
++------------+--------------+-----------+-----------+----------------+------------------+---------------+---------------+--------------------+--------------------+------------------------+
+| mean_error | median_error | max_error | min_error | mean_abs_error | median_abs_error | max_abs_error | min_abs_error | mean_squared_error | mean_percent_error | mean_abs_percent_error |
++------------+--------------+-----------+-----------+----------------+------------------+---------------+---------------+--------------------+--------------------+------------------------+
+| -14.066069 | -16.738718   | 1.6366172 | -29.53295 | 14.229732      | 16.738718        | 29.53295      | 0.30781555    | 265.89893          | 1.4075378          | 1.4174474              |
++------------+--------------+-----------+-----------+----------------+------------------+---------------+---------------+--------------------+--------------------+------------------------+
+
+
+model ML raw output: 4.5361
+model ML final output: 0.9894
+model circuit output: 0x1b5 = 437
+model_output_scales = 7
+--> 437/2^7 = 3.414
+
+
+Verification key size: 99784 bytes
+Proving key size: 157386496 bytes
+Setup time, INFO:ezkl.pfsys:VK took 7.704;
+INFO:ezkl.pfsys:PK took 2.566;
+function call took 19.110018968582153
+Proving time, INFO:ezkl.pfsys:proof took 27.657;
+function call took 28.45757222175598
+Verification (locally) time, INFO:ezkl.execute:verify took 0.12;
+function call took 0.1283681869506836
+
+Test SNN with total number of parameters: 30849
+Number of samples in dataset: 10000
+Learning Rate: 0.1, Avg loss: 0.04633612815425295
+Learning Rate: 0.1, Test Accuracy: 91.60%
+Calibration made with "resources" and scales=[1, 8]
+
+
+  CarbonCreditsContract
+Gas used: 599024
+
+ Verification Event:
+          User: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
+          Instances (decimal): 437
+          Proof (Partial): 0x24e4e32cea640d422330fdde96e66e926611da94d4debd2ef5064d68ee19a014046010dc7e069689e93f386f23a0629128...
+    ✔ should allow user to claim credit after a valid proof is submitted
+
+·------------------------------------------|---------------------------|-------------|-----------------------------·
+|           Solc version: 0.8.20           ·  Optimizer enabled: true  ·  Runs: 200  ·  Block limit: 30000000 gas  │      
+···········································|···························|·············|······························      
+|  Methods                                                                                                         │      
+··························|················|·············|·············|·············|···············|··············      
+|  Contract               ·  Method        ·  Min        ·  Max        ·  Avg        ·  # calls      ·  usd (avg)  │      
+··························|················|·············|·············|·············|···············|··············      
+|  CarbonCreditsContract  ·  claimCredits  ·          -  ·          -  ·     599024  ·            4  ·          -  │      
+··························|················|·············|·············|·············|···············|··············      
+|  Deployments                             ·                                         ·  % of limit   ·             │      
+···········································|·············|·············|·············|···············|··············      
+|  CarbonCreditsContract                   ·          -  ·          -  ·     303914  ·          1 %  ·          -  │      
+···········································|·············|·············|·············|···············|··············      
+|  Halo2Verifier                           ·          -  ·          -  ·    2228194  ·        7.4 %  ·          -  │      
+·------------------------------------------|-------------|-------------|-------------|---------------|-------------· 
