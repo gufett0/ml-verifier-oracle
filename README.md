@@ -1,3 +1,4 @@
+
 # README
 
 ## Key Features
@@ -13,11 +14,11 @@ This repository contains:
 
 The successful deployment and execution of the artifact necessitate the following hardware specifications:
 
-All computations were performed on Python 3 Google Compute Engine backend.
+All computations were performed on Python 3 Google Compute Engine backend, with Colab Premium version.
 
 + **Processor**: 2 Intel(R) Xeon(R) CPU @ 2.20GHz
 
-+ **Memory**: 13GB RAM
++ **Memory**: 51GB RAM
 
 + **Storage**: 20GB free space
 
@@ -85,14 +86,20 @@ For example, in the above code the smaller model is getting loaded, as indicated
 
 All the execution steps are self-explanatory by reading each cell comments.  
 However, there are two main things to keep in mind:  
-In cell number 14 you can change the parameter “_scales_” of this command to [1,8].
+In the calibration process, after defining the parameters that determine, among other things, the circuit shape and size, 
 ```shell
-res = ezkl.calibrate_settings(cal_path, model_path, settings_path, "resources", scales = [1, 1])
+res = ezkl.calibrate_settings(cal_path, model_path, settings_path, "resources", max_logrows=18, scales=[1])
 ```
+This will change the settings of the circuit, optimizing more for resources vs. accuracy, as explained in the paper. The 2 configurations described in the published paper, used for both models, are the following:
 
-This will change the settings of the circuit, optimizing more for resources vs. accuracy, as explained in the paper.
-
-  
++ Optimized for for resources:
+```shell
+res = ezkl.calibrate_settings(cal_path, model_path, settings_path, "resources", max_logrows=18, scales=[1])
+```
++ Optimized for accuracy:
+```shell
+res = ezkl.calibrate_settings(cal_path, model_path, settings_path, "accuracy", max_logrows=18, scales=[6])
+```
 In cell 19 the output of _ezkl.create_evm_verifier_ is a smart contract file that will overwrite the previous one.  
 
 **B. On-Chain Task (Verification and Validation)**
@@ -108,7 +115,7 @@ This will execute the hardhat test on the verifier contract and log the correspo
 ```
 REPORT_GAS=true npx hardhat test 
 ```
-will log the gas usage of on-chain operations.
+will log the gas usage of on-chain operations. If you want to obtain an up-to-date estimate from CoinMarketCap in ETH, MATIC and USD of the gas spent, you can add an .env file to the project root and enter your API key as follows COINMARKETCAP_API_KEY="" and uncomment the line of code inside hardhat.config.ts "//coinmarketcap:process.env.COINMARKETCAP_API_KEY,".
 
 Here are reported some of the commands that can be executed within hardhat
 ```
